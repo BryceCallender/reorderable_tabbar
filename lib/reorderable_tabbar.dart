@@ -278,7 +278,7 @@ class ReorderableTabBar extends StatefulWidget implements PreferredSizeWidget {
     this.padding,
     this.indicatorColor,
     this.automaticIndicatorColorAdjustment = false,
-    this.indicatorWeight = 5.0,
+    this.indicatorWeight = 2.0,
     this.indicatorPadding = EdgeInsets.zero,
     this.indicator,
     this.indicatorSize,
