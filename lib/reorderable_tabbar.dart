@@ -277,8 +277,8 @@ class ReorderableTabBar extends StatefulWidget implements PreferredSizeWidget {
     this.isScrollable = false,
     this.padding,
     this.indicatorColor,
-    this.automaticIndicatorColorAdjustment = true,
-    this.indicatorWeight = 2.0,
+    this.automaticIndicatorColorAdjustment = false,
+    this.indicatorWeight = 5.0,
     this.indicatorPadding = EdgeInsets.zero,
     this.indicator,
     this.indicatorSize,
@@ -294,12 +294,11 @@ class ReorderableTabBar extends StatefulWidget implements PreferredSizeWidget {
     this.onTap,
     this.physics,
     this.onReorder,
-    this.defaultIndicator = false,
+    this.defaultIndicator = true,
     this.tabBorderRadius,
     this.reorderingTabBackgroundColor,
     this.tabBackgroundColor,
   })  : assert(indicator != null || (indicatorWeight > 0.0)),
-        assert(indicator != null),
         super(key: key);
 
   final BorderRadius? tabBorderRadius;
