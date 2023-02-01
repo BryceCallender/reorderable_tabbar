@@ -39,18 +39,18 @@ class _TabStyle extends AnimatedWidget {
     // To enable TextStyle.lerp(style1, style2, value), both styles must have
     // the same value of inherit. Force that to be inherit=true here.
     final TextStyle defaultStyle = (labelStyle ??
-            tabBarTheme.labelStyle ??
-            themeData.primaryTextTheme.bodyText1!)
+        tabBarTheme.labelStyle ??
+        themeData.primaryTextTheme.bodyText1!)
         .copyWith(inherit: true);
     final TextStyle defaultUnselectedStyle = (unselectedLabelStyle ??
-            tabBarTheme.unselectedLabelStyle ??
-            labelStyle ??
-            themeData.primaryTextTheme.bodyText1!)
+        tabBarTheme.unselectedLabelStyle ??
+        labelStyle ??
+        themeData.primaryTextTheme.bodyText1!)
         .copyWith(inherit: true);
     final TextStyle textStyle = selected
         ? TextStyle.lerp(defaultStyle, defaultUnselectedStyle, animation.value)!
         : TextStyle.lerp(
-            defaultUnselectedStyle, defaultStyle, animation.value)!;
+        defaultUnselectedStyle, defaultStyle, animation.value)!;
 
     final Color selectedColor = labelColor ??
         tabBarTheme.labelColor ??
@@ -168,12 +168,12 @@ class _IndicatorPainter extends CustomPainter {
 
     final EdgeInsets insets = indicatorPadding.resolve(_currentTextDirection);
     final Rect rect =
-        Rect.fromLTWH(tabLeft, 0.0, tabRight - tabLeft, tabBarSize.height);
+    Rect.fromLTWH(tabLeft, 0.0, tabRight - tabLeft, tabBarSize.height);
 
     if (!(rect.size >= insets.collapsedSize)) {
       throw FlutterError(
         'indicatorPadding insets should be less than Tab Size\n'
-        'Rect Size : ${rect.size}, Insets: ${insets.toString()}',
+            'Rect Size : ${rect.size}, Insets: ${insets.toString()}',
       );
     }
     return insets.deflateRect(rect);
@@ -262,7 +262,7 @@ class _DragAnimation extends Animation<double>
     assert(!controller.indexIsChanging);
     final double controllerMaxValue = (controller.length - 1).toDouble();
     final double controllerValue =
-        controller.animation!.value.clamp(0.0, controllerMaxValue);
+    controller.animation!.value.clamp(0.0, controllerMaxValue);
     return (controllerValue - index.toDouble()).abs().clamp(0.0, 1.0);
   }
 }
@@ -592,10 +592,10 @@ class _ReorderableTabBarState extends State<ReorderableTabBar> {
       if (newController == null) {
         throw FlutterError(
           'No TabController for ${widget.runtimeType}.\n'
-          'When creating a ${widget.runtimeType}, you must either provide an explicit '
-          'TabController using the "controller" property, or you must ensure that there '
-          'is a DefaultTabController above the ${widget.runtimeType}.\n'
-          'In this case, there was neither an explicit controller nor a default controller.',
+              'When creating a ${widget.runtimeType}, you must either provide an explicit '
+              'TabController using the "controller" property, or you must ensure that there '
+              'is a DefaultTabController above the ${widget.runtimeType}.\n'
+              'In this case, there was neither an explicit controller nor a default controller.',
         );
       }
       return true;
@@ -619,14 +619,14 @@ class _ReorderableTabBarState extends State<ReorderableTabBar> {
     _indicatorPainter = !_controllerIsValid
         ? null
         : _IndicatorPainter(
-            controller: _controller!,
-            indicator: _indicator,
-            indicatorSize:
-                widget.indicatorSize ?? TabBarTheme.of(context).indicatorSize,
-            indicatorPadding: widget.indicatorPadding,
-            tabKeys: _tabKeys,
-            old: _indicatorPainter,
-          );
+      controller: _controller!,
+      indicator: _indicator,
+      indicatorSize:
+      widget.indicatorSize ?? TabBarTheme.of(context).indicatorSize,
+      indicatorPadding: widget.indicatorPadding,
+      tabKeys: _tabKeys,
+      old: _indicatorPainter,
+    );
   }
 
   @override
@@ -867,13 +867,13 @@ class _ReorderableTabBarState extends State<ReorderableTabBar> {
       if (_controller!.length != widget.tabs.length) {
         throw FlutterError(
           "Controller's length property (${_controller!.length}) does not match the "
-          "number of tabs (${widget.tabs.length}) present in TabBar's tabs property.",
+              "number of tabs (${widget.tabs.length}) present in TabBar's tabs property.",
         );
       }
       return true;
     }());
     final MaterialLocalizations localizations =
-        MaterialLocalizations.of(context);
+    MaterialLocalizations.of(context);
     if (_controller!.length == 0) {
       return Container(
         height: _kTabHeight + widget.indicatorWeight,
@@ -883,14 +883,14 @@ class _ReorderableTabBarState extends State<ReorderableTabBar> {
     final TabBarTheme tabBarTheme = TabBarTheme.of(context);
 
     final List<Widget> wrappedTabs =
-        List<Widget>.generate(widget.tabs.length, (int index) {
+    List<Widget>.generate(widget.tabs.length, (int index) {
       const double verticalAdjustment =
           (_kTextAndIconTabHeight - _kTabHeight) / 2.0;
       EdgeInsetsGeometry? adjustedPadding;
 
       if (widget.tabs[index] is PreferredSizeWidget) {
         final PreferredSizeWidget tab =
-            widget.tabs[index] as PreferredSizeWidget;
+        widget.tabs[index] as PreferredSizeWidget;
         if (widget.tabHasTextAndIcon &&
             tab.preferredSize.height == _kTabHeight) {
           if (widget.labelPadding != null || tabBarTheme.labelPadding != null) {
@@ -931,20 +931,20 @@ class _ReorderableTabBarState extends State<ReorderableTabBar> {
       } else {
         final int tabIndex = _currentIndex!;
         final Animation<double> centerAnimation =
-            _DragAnimation(_controller!, tabIndex);
+        _DragAnimation(_controller!, tabIndex);
         wrappedTabs[tabIndex] =
             _buildStyledTab(wrappedTabs[tabIndex], true, centerAnimation);
         if (_currentIndex! > 0) {
           final int tabIndex = _currentIndex! - 1;
           final Animation<double> previousAnimation =
-              ReverseAnimation(_DragAnimation(_controller!, tabIndex));
+          ReverseAnimation(_DragAnimation(_controller!, tabIndex));
           wrappedTabs[tabIndex] =
               _buildStyledTab(wrappedTabs[tabIndex], false, previousAnimation);
         }
         if (_currentIndex! < widget.tabs.length - 1) {
           final int tabIndex = _currentIndex! + 1;
           final Animation<double> nextAnimation =
-              ReverseAnimation(_DragAnimation(_controller!, tabIndex));
+          ReverseAnimation(_DragAnimation(_controller!, tabIndex));
           wrappedTabs[tabIndex] =
               _buildStyledTab(wrappedTabs[tabIndex], false, nextAnimation);
         }
@@ -998,14 +998,17 @@ class _ReorderableTabBarState extends State<ReorderableTabBar> {
         key: _tabExtendKeys[i],
         width: tabWidth,
         height: height,
-        child: _TabStyle(
-          animation: kAlwaysDismissedAnimation,
-          selected: false,
-          labelColor: widget.labelColor,
-          unselectedLabelColor: widget.unselectedLabelColor,
-          labelStyle: widget.labelStyle,
-          unselectedLabelStyle: widget.unselectedLabelStyle,
-          child: child,
+        child: ReorderableDragStartListener(
+          index: i,
+          child: _TabStyle(
+            animation: kAlwaysDismissedAnimation,
+            selected: false,
+            labelColor: widget.labelColor,
+            unselectedLabelColor: widget.unselectedLabelColor,
+            labelStyle: widget.labelStyle,
+            unselectedLabelStyle: widget.unselectedLabelStyle,
+            child: child,
+          ),
         ),
       );
     }
@@ -1019,10 +1022,11 @@ class _ReorderableTabBarState extends State<ReorderableTabBar> {
             scrollController: _reorderController,
             scrollDirection: Axis.horizontal,
             children: wrappedTabs,
+            buildDefaultDragHandles: false,
             proxyDecorator: (child, index, anim) {
               return Material(
                 color:
-                    widget.reorderingTabBackgroundColor ?? Colors.transparent,
+                widget.reorderingTabBackgroundColor ?? Colors.transparent,
                 borderRadius: widget.tabBorderRadius,
                 child: child,
               );
