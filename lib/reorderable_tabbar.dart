@@ -298,8 +298,7 @@ class ReorderableTabBar extends StatefulWidget implements PreferredSizeWidget {
     this.tabBorderRadius,
     this.reorderingTabBackgroundColor,
     this.tabBackgroundColor,
-  })  : assert(indicator != null || (indicatorWeight > 0.0)),
-        super(key: key);
+  }) : super(key: key);
 
   final BorderRadius? tabBorderRadius;
 
